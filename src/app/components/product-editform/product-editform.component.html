@@ -1,0 +1,27 @@
+
+<div class="card">
+  <div class="card-header pb-0 px-3">
+    <h6 class="mb-0">Edit Product</h6>
+  </div>
+  <div class="card-body pt-4 p-3">
+    <form [formGroup]="form" (ngSubmit)="updatePost(product.id)">
+      <div class="input-group input-group-outline mb-4">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" formControlName="name">
+      </div>
+      <div class="input-group input-group-outline mb-4">
+        <label class="form-label">Price</label>
+        <input type="text" class="form-control" formControlName="price">
+      </div>
+      <div class="input-group input-group-outline mb-4">
+        <label class="form-label">Description</label>
+        <input type="text" class="form-control" formControlName="description">
+      </div>
+      <div class="input-group input-group-outline mb-4">
+        <label class="form-label">Status</label>
+        <input type="text" class="form-control" formControlName="status">
+      </div>   
+      <button class="btn bg-gradient-primary mb-0" ><i class="material-icons text-sm">update</i>&nbsp;&nbsp;Update </button>
+    </form>
+  </div>
+</div>
