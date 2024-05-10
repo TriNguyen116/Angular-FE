@@ -7,9 +7,12 @@
         <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg" *ngFor = "let product of products">
           <div class="d-flex flex-column">
             <h6 class="mb-3 text-sm">{{product.name | uppercase}}</h6>
+           
             <span class="mb-2 text-xs">Id: <span class="text-dark font-weight-bold ms-sm-2">{{product.id}}</span></span>
             <span class="mb-2 text-xs">Price: <span class="text-dark ms-sm-2 font-weight-bold">{{product.price}}</span></span>
             <span class="text-xs">Description: <span class="text-dark ms-sm-2 font-weight-bold">{{product.description}}</span></span>
+            <span class="text-xs">Category: <span class="text-dark ms-sm-2 font-weight-bold">{{product.category}}</span></span>
+
           </div>
           <div class="ms-auto text-end">
             <a class="btn btn-link text-danger text-gradient px-3 mb-0" (click)="deleteProduct(product.id)"><i class="material-icons text-sm me-2" >delete</i>Delete</a>

@@ -8,11 +8,18 @@
   <div class="container-fluid py-4">
     <div class="row">
       <div class="col-md-7 mt-4">
+        <app-category (categoryNumber)="reciveCategory($event)"></app-category>
+      </div>
+      <div class="col-md-5 mt-4">
+        <app-category-productlist [categoryFromProductComponent]="fromCategoryComponent"></app-category-productlist>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-7 mt-4">
         <app-product-list></app-product-list>
       </div>
       <div class="col-md-5 mt-4">
        <app-product-addform></app-product-addform>
-       <!-- <app-product-editform></app-product-editform> -->
       </div>
     </div>
     <app-footer></app-footer>

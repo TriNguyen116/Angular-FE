@@ -1,19 +1,20 @@
-import { Component, Inject, Input, OnInit, inject, input } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output, inject, input } from '@angular/core';
 import { ProductService } from '../../services/productService/product.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Toast, ToastrModule, ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-product-list',
+  selector: 'app-category-productlist',
   standalone: true,
   imports: [CommonModule, RouterLink, ToastrModule],
-  templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.css'
+  templateUrl: './category-productlist.component.html',
+  styleUrl: './category-productlist.component.css'
 })
-export class ProductListComponent implements OnInit {
+export class CategoryProductlistComponent {
   products: any = [];
-  // productsCategory: any[] = [];
+
+  productsCategory: any[] = [];
   productService = inject(ProductService)
   @Input() categoryFromProductComponent = ''
   ngOnInit(): void {
@@ -21,20 +22,23 @@ export class ProductListComponent implements OnInit {
     this.getCategoryProduct()
   }
 
-  getCategoryProduct() {
-    this.productService.getCategoryProduct(this.categoryFromProductComponent).subscribe((data: any[]) => {
+
+  getCategoryProduct(): void {
+    this.productService.getCategoryProduct(this.categoryFromProductComponent).subscribe((data: any[] = []) => {
+      this.productsCategory = data
+      console.log(this.productsCategory);
 
     })
   }
   getProducts(): void {
     this.productService.getAll().subscribe((data: any[]) => {
       this.products = data
+      console.log(this.products);
+
     })
   }
 
   deleteProduct(id: any): void {
     this.productService.delete(id).then(() => { console.log('Update item successfully1') }).catch((err) => console.log(err));
   }
-
-
 }

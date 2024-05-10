@@ -19,6 +19,8 @@ export class ProductAddformComponent {
     price: ['', Validators.required],
     description: ['', Validators.required],
     status: ['', Validators.required],
+    category: ['', Validators.required],
+
   })
 
   addProductForm(): any {

@@ -13,6 +13,5 @@ export const routes: Routes = [
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'products', component: ProductsComponent },
-  { path: 'products/edit/:id', component: ProductEditformComponent }
-
+  { path: 'products/edit/:id', component: ProductEditformComponent },
 ];
