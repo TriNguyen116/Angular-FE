@@ -1,0 +1,34 @@
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+  <app-sidenav></app-sidenav>
+</aside>
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+  <!-- Navbar -->
+  <app-navbar></app-navbar>
+  <!-- End Navbar -->
+  <div class="container-fluid py-4">
+    <h6>page categories</h6>
+    <ul>
+      @for(it of items;track it.id){
+        <li>{{it.id}} -- {{it.name}}</li>
+      }
+    </ul>
+    <form [formGroup]="insertForm" (ngSubmit)="onSubmit()">
+      <div class="input-group input-group-outline mb-4">
+        <label class="form-label">Id</label>
+        <input type="text" class="form-control" formControlName="id">
+      </div>
+      <div class="input-group input-group-outline mb-4">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" formControlName="name">
+      </div>
+      <div class="input-group input-group-outline mb-4">
+        <label class="form-label">Description</label>
+        <input type="text" class="form-control" formControlName="description">
+      </div>   
+      <button class="btn bg-gradient-primary mb-0" [disabled]="!insertForm.valid"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add </button>
+    </form>
+    <app-footer></app-footer>
+  </div>
+</main>
+<app-plugin></app-plugin>
+

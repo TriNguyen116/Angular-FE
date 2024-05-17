@@ -12,6 +12,7 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { provideToastr } from 'ngx-toastr';
+import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
 
 
 export const appConfig: ApplicationConfig = {
@@ -19,6 +20,7 @@ export const appConfig: ApplicationConfig = {
   importProvidersFrom(
     provideFirebaseApp(() => initializeApp(environment.firebase))
   ),
+  provideHttpClient(withFetch()),
   importProvidersFrom(provideAuth(() => getAuth())),
   importProvidersFrom(provideFirestore(() => getFirestore())),
   importProvidersFrom(provideDatabase(() => getDatabase())),

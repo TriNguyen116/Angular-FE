@@ -10,17 +10,18 @@ import { ProductService } from '../../services/productService/product.service';
 })
 export class CategoryComponent {
   @Output() categoryNumber = new EventEmitter<string>();
+  @Output() clicked = new EventEmitter<void>();
   categoryValue = ''
   productService = inject(ProductService)
   productsCategory: any[] = []
   selectCategory(categoryValue: any) {
-    this.categoryNumber.emit(categoryValue)
+    this.categoryNumber.emit(categoryValue);
   }
-  getCategoryProduct(categoryValue: any): void {
-    this.productService.getCategoryProduct(categoryValue).subscribe((data: any[] = []) => {
-      this.productsCategory = data
-      console.log(this.productsCategory);
+  // getCategoryProduct(categoryValue: any): void {
+  //   this.productService.getCategoryProduct(categoryValue).subscribe((data: any[] = []) => {
+  //     this.productsCategory = data
+  //     console.log(this.productsCategory);
 
-    })
-  }
+  //   })
+  // }
 }

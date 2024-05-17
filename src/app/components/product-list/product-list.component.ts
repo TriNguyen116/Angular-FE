@@ -18,14 +18,9 @@ export class ProductListComponent implements OnInit {
   @Input() categoryFromProductComponent = ''
   ngOnInit(): void {
     this.getProducts()
-    this.getCategoryProduct()
   }
 
-  getCategoryProduct() {
-    this.productService.getCategoryProduct(this.categoryFromProductComponent).subscribe((data: any[]) => {
 
-    })
-  }
   getProducts(): void {
     this.productService.getAll().subscribe((data: any[]) => {
       this.products = data
