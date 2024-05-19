@@ -15,4 +15,16 @@ export class ItemService {
   insertItem(item: Item): Observable<Item> {
     return this.http.post<Item>('http://localhost:8000/api/insert', item)
   }
+
+  getItemsMongo(): Observable<any> {
+    return this.http.get<any>('http://localhost:8000/api/get')
+  }
+
+  insertCategory(data: any): Observable<any> {
+    return this.http.post<any>('http://localhost:8000/api/post', data)
+  }
+
+  deleteCategory(id: any) {
+    return this.http.delete<any>(`http://localhost:8000/api/delete?id=${id}`)
+  }
 }

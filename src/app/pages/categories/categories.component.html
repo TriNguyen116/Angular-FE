@@ -6,27 +6,78 @@
   <app-navbar></app-navbar>
   <!-- End Navbar -->
   <div class="container-fluid py-4">
-    <h6>page categories</h6>
-    <ul>
-      @for(it of items;track it.id){
-        <li>{{it.id}} -- {{it.name}}</li>
-      }
-    </ul>
-    <form [formGroup]="insertForm" (ngSubmit)="onSubmit()">
-      <div class="input-group input-group-outline mb-4">
-        <label class="form-label">Id</label>
-        <input type="text" class="form-control" formControlName="id">
+
+    <div class="row">
+      <div class="col-7">
+        <div class="card">
+          <div class="card-header pb-0 px-3">
+            <h6 class="mb-0">Category</h6>
+          </div>
+          <div class="card-body pt-4 p-3">
+            <ul class="list-group" style="overflow: auto; height: 450px;">
+              <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg" *ngFor = "let item of itemsMongo">
+                <div class="d-flex flex-column">
+                  <h6 class="mb-3 text-sm">{{item.name | uppercase}}</h6>
+                  <span class="mb-2 text-xs">Id: <span class="text-dark font-weight-bold ms-sm-2">{{item.id}}</span></span>
+                  <span class="mb-2 text-xs">_ID-MongoDB: <span class="text-dark ms-sm-2 font-weight-bold">{{item._id}}</span></span>
+                </div>
+                <div class="ms-auto text-end">
+                  <a class="btn btn-link text-danger text-gradient px-3 mb-0" (click)="onDeleteCategory(item.id)"><i class="material-icons text-sm me-2" >delete</i>Delete</a>
+                  <a class="btn btn-link text-dark px-3 mb-0" routerLink=""><i class="material-icons text-sm me-2">edit</i>Edit</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="input-group input-group-outline mb-4">
-        <label class="form-label">Name</label>
-        <input type="text" class="form-control" formControlName="name">
+      <div class="col-5">
+      <div class="card">
+        <div class="card-header pb-0 px-3">
+          <h6 class="mb-0">Add Product</h6>
+        </div>
+        <div class="card-body pt-4 p-3">
+          <form [formGroup]="formCategory" (ngSubmit)="addCategoryForm()">
+            <div class="input-group input-group-outline mb-4">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control" formControlName="name">
+              </div>
+            <button class="btn bg-gradient-primary mb-0" ><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add </button>
+          </form>
+        </div>
       </div>
-      <div class="input-group input-group-outline mb-4">
-        <label class="form-label">Description</label>
-        <input type="text" class="form-control" formControlName="description">
-      </div>   
-      <button class="btn bg-gradient-primary mb-0" [disabled]="!insertForm.valid"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add </button>
-    </form>
+    </div>
+    </div>
+
+
+
+    <div class="row mt-5" >
+      <div class="col-5">
+        <h5>items for item</h5> 
+        <ul>
+          @for(it of items;track it.id){
+            <li>{{it.id}} -- {{it.name}}</li>
+          }
+        </ul>
+      </div>
+      <div class="col-7">
+        <form [formGroup]="insertForm" (ngSubmit)="onSubmit()">
+          <div class="input-group input-group-outline mb-4">
+            <label class="form-label">Id</label>
+            <input type="text" class="form-control" formControlName="id">
+          </div>
+          <div class="input-group input-group-outline mb-4">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" formControlName="name">
+          </div>
+          <div class="input-group input-group-outline mb-4">
+            <label class="form-label">Description</label>
+            <input type="text" class="form-control" formControlName="description">
+          </div>   
+          <button class="btn bg-gradient-primary mb-0" [disabled]="!insertForm.valid"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Add </button>
+        </form>
+      </div>
+    </div>
+  
     <app-footer></app-footer>
   </div>
 </main>

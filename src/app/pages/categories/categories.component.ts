@@ -20,13 +20,45 @@ export class CategoriesComponent implements OnInit {
   fb: FormBuilder = inject(FormBuilder)
   // insertForm: any
   items: Item[] = [];
+  itemsMongo: any[] = [];
   insertForm = this.fb.group({
     id: ['', Validators.required],
     name: ['', Validators.required],
     description: ['', Validators.required],
   })
+  formCategory = this.fb.group({
+    name: ['', Validators.required],
+  })
   ngOnInit(): void {
     this.itemService.getItems().subscribe(data => { this.items = data })
+    this.itemService.getItemsMongo().subscribe(data => { this.itemsMongo = data })
+  }
+  ngOnChanges() {
+    this.itemService.getItemsMongo().subscribe(data => { this.itemsMongo = data })
+  }
+
+
+  addCategoryForm() {
+    this.itemService.insertCategory(this.formCategory.getRawValue()).subscribe(data => {
+      data = this.itemsMongo
+    })
+    console.log(this.formCategory.getRawValue())
+  }
+
+  onDeleteCategory(id: any) {
+    this.itemService.deleteCategory(id).subscribe({
+      next: response => {
+        console.log('Xóa thành công', response);
+        // Tùy chọn: Làm mới danh sách hoặc xử lý phản hồi
+      },
+      error: error => {
+        console.error('Xóa thất bại', error);
+      },
+      complete: () => {
+        console.log('Hoàn thành thao tác xóa');
+      }
+    });
+    console.log(id);
   }
   onSubmit() {
     let item = new Item();
